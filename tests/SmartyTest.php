@@ -1,18 +1,17 @@
 <?php
 namespace Slim\Tests\Views;
 
+use PHPUnit\Framework\TestCase;
 use Slim\Views\Smarty;
 
-require dirname(__DIR__) . '/vendor/autoload.php';
-
-class SmartyTest extends \PHPUnit_Framework_TestCase
+class SmartyTest extends TestCase
 {
     /**
      * @var Smarty
      */
     protected $view;
 
-    public function setUp()
+    public function setUp(): void
     {
         $mockRouter = $this->getMockBuilder('Slim\Router')
             ->disableOriginalConstructor()
