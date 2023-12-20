@@ -1,18 +1,17 @@
 <?php
 namespace Slim\Tests\Views;
 
+use PHPUnit\Framework\TestCase;
 use Slim\Views\Smarty;
 
-require dirname(__DIR__) . '/vendor/autoload.php';
-
-class SmartyTest extends \PHPUnit_Framework_TestCase
+class SmartyTest extends TestCase
 {
     /**
      * @var Smarty
      */
     protected $view;
 
-    public function setUp()
+    public function setUp(): void
     {
         $mockRouter = $this->getMockBuilder('Slim\Router')
             ->disableOriginalConstructor()
@@ -26,6 +25,9 @@ class SmartyTest extends \PHPUnit_Framework_TestCase
         $this->view->addSlimPlugins($mockRouter, 'base_url_test');
     }
 
+    /**
+     * @covers \Slim\Views\Smarty::fetch
+     */
     public function testFetch()
     {
         $output = $this->view->fetch('hello.tpl', [
@@ -35,6 +37,9 @@ class SmartyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("<p>Hello, my name is Matheus.</p>\n", $output);
     }
 
+    /**
+     * @covers \Slim\Views\Smarty::render
+     */
     public function testRender()
     {
         $mockBody = $this->getMockBuilder('Psr\Http\Message\StreamInterface')
@@ -60,6 +65,9 @@ class SmartyTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Psr\Http\Message\ResponseInterface', $response);
     }
 
+    /**
+     * @covers \Slim\Views\Smarty::fetch
+     */
     public function testPlugin()
     {
         $output = $this->view->fetch('plugin.tpl');
@@ -67,6 +75,9 @@ class SmartyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("<p>Plugin return: base_url_test.</p>\n", $output);
     }
 
+    /**
+     * @covers \Slim\Views\Smarty::getSmarty
+     */
     public function testPluginDirs()
     {
         $this->assertGreaterThanOrEqual(2, count($this->view->getSmarty()->getPluginsDir()));

@@ -1,6 +1,9 @@
+.idea
+.php_cs.cache
+.phpunit.cache
+phpunit.xml
 composer.lock
 vendor
-.idea
 
-#Unit Test Compile Dir
+# Unit Test Compile Dir
 tests/templates_c
