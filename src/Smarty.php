@@ -153,6 +153,7 @@ class Smarty implements \ArrayAccess
      *
      * @return bool
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($key)
     {
         return array_key_exists($key, $this->defaultVariables);
@@ -165,6 +166,7 @@ class Smarty implements \ArrayAccess
      *
      * @return mixed The key's value, or the default value
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($key)
     {
         return $this->defaultVariables[$key];
@@ -176,6 +178,7 @@ class Smarty implements \ArrayAccess
      * @param string $key The data key
      * @param mixed $value The data value
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($key, $value)
     {
         $this->defaultVariables[$key] = $value;
@@ -186,6 +189,7 @@ class Smarty implements \ArrayAccess
      *
      * @param string $key The data key
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($key)
     {
         unset($this->defaultVariables[$key]);
